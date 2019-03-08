@@ -5,7 +5,11 @@ const sequelize = require('../../config/database');
 const tableName = 'notes';
 
 const Note = sequelize.define('Note', {
-  note: {
+  jokeId: {
+    type: Sequelize.INTEGER,
+    unique: true,
+  },
+  joke: {
     type: Sequelize.STRING,
   },
 }, { tableName });

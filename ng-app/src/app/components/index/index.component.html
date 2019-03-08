@@ -4,7 +4,7 @@
     <li *ngFor="let joke of jokes">
       {{ joke.joke }}
 
-      <button (click)="makeFavorite(joke)" [disabled]="joke.isFavorite">Make favorite</button>
+      <button (click)="makeFavorite(joke)" [disabled]="joke.favorite">Make favorite</button>
     </li>
   </ul>
 </ng-container>
@@ -19,6 +19,7 @@
 </ng-template>
 
 <ng-template #list>
+  <p *ngIf="showAlert">{{showAlert}}</p>
   <ul>
     <li *ngFor="let joke of favoriteJokes; let i = index">
       {{ joke.joke }}

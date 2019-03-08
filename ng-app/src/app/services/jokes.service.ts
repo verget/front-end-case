@@ -24,6 +24,10 @@ export class JokesService {
   }
 
   saveFavoriteJoke(id: number): Observable<any>{
-    return this.http.post(`${this.apiUrl}/jokes/favorite`, { id });
+    return this.http.post(`${this.apiUrl}/favorite`, { id });
+  }
+
+  getFavorites(): Observable<Joke[]>{
+    return this.http.get(`${this.apiUrl}/favorites`);
   }
 }

@@ -18,18 +18,14 @@ const noteQuery = {
       name: 'userId',
       type: GraphQLInt,
     },
-    note: {
-      name: 'note',
-      type: GraphQLString,
+    jokeId: {
+      name: 'jokeId',
+      type: GraphQLInt,
     },
-    createdAt: {
-      name: 'createdAt',
+    joke: {
+      name: 'joke',
       type: GraphQLString,
-    },
-    updatedAt: {
-      name: 'updatedAt',
-      type: GraphQLString,
-    },
+    }
   },
   resolve: (user, args) => Note.findAll({ where: args }),
 };

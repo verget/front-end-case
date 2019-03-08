@@ -11,6 +11,7 @@ export class IndexComponent implements OnInit {
 
   public jokes: Joke[] = [];
   public favoriteJokes: Joke[] = [];
+  public showAlert: string;
 
   constructor(
     private jokesService: JokesService
@@ -20,19 +21,26 @@ export class IndexComponent implements OnInit {
     this.jokesService.fetchRandomJokes(10).subscribe(response => {
       console.log(response);
       this.jokes = response;
+    });
+    this.jokesService.getFavorites().subscribe(response => {
+      console.log(response);
+      this.favoriteJokes = response;
     })
   }
 
   makeFavorite(joke: Joke) {
-    if (!joke.isFavorite && this.favoriteJokes.length < 10) {
-      joke.isFavorite = true;
+    if (this.favoriteJokes.length < 10) {
+      this.showAlert = '';
+      joke.favorite = true;
       this.favoriteJokes.push(joke);
       this.jokesService.saveFavoriteJoke(joke.id).subscribe();
+    } else {
+      this.showAlert = "You can't have more then 10 favorites";
     }
   }
 
   removeFavorite(joke, index) {
-    joke.isFavorite = false;
+    joke.favorite = false;
     this.favoriteJokes.splice(index, 1);
   }
 }

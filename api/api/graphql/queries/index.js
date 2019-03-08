@@ -3,5 +3,5 @@ const { userQuery } = require('./UserQuery');
 
 module.exports = {
   noteQuery,
-  userQuery,
+  userQuery
 };

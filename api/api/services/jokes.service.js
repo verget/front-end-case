@@ -10,8 +10,17 @@ const jokesService = () => {
     return request(options);
   };
 
+  const getSpecificJoke = (id) => {
+    const options = {
+      uri: `${jokesUrl}/${id}`,
+      json: true
+    };
+    return request(options);
+  };
+
   return {
-    getRandomJokes
+    getRandomJokes,
+    getSpecificJoke
   };
 };
 

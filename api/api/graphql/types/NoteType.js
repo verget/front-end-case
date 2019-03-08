@@ -12,22 +12,18 @@ const NoteType = new GraphQLObjectType({
       type: GraphQLInt,
       resolve: (note) => note.id,
     },
+    jokeId: {
+      type: GraphQLInt,
+      resolve: (note) => note.jokeId,
+    },
     userId: {
       type: GraphQLInt,
       resolve: (note) => note.userId,
     },
-    note: {
+    joke: {
       type: GraphQLString,
-      resolve: (note) => note.note,
-    },
-    createdAt: {
-      type: GraphQLString,
-      resolve: (note) => note.createdAt,
-    },
-    updatedAt: {
-      type: GraphQLString,
-      resolve: (note) => note.createdAt,
-    },
+      resolve: (note) => note.joke,
+    }
   }),
 });
 

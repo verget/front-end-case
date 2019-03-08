@@ -2,5 +2,5 @@ export interface Joke {
   id: number,
   joke: string,
   categories: string[],
-  isFavorite?: boolean
+  favorite?: boolean
 }

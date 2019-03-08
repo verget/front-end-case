@@ -16,71 +16,43 @@ const createNote = {
       name: 'userId',
       type: new GraphQLNonNull(GraphQLInt),
     },
-    note: {
-      name: 'note',
+    jokeId: {
+      name: 'jokeId',
+      type: new GraphQLNonNull(GraphQLInt),
+    },
+    joke: {
+      name: 'joke',
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: (value, { userId, note }) => (
+  resolve: (value, { userId, jokeId, note }) => (
     Note.create({
       userId,
+      jokeId,
       note,
     })
   ),
 };
 
-const updateNote = {
-  type: NoteType,
-  description: 'The mutation that allows you to update an existing Note by Id',
-  args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLInt),
-    },
-    userId: {
-      name: 'userId',
-      type: new GraphQLNonNull(GraphQLInt),
-    },
-    note: {
-      name: 'note',
-      type: GraphQLString,
-    },
-  },
-  resolve: async (value, { id, userId, note }) => {
-    const foundNote = await Note.findById(id);
-
-    if (!foundNote) {
-      throw new Error(`Note with id: ${id} not found!`);
-    }
-
-    const updatedNote = merge(foundNote, {
-      userId,
-      note,
-    });
-
-    return foundNote.update(updatedNote);
-  },
-};
-
 const deleteNote = {
   type: NoteType,
-  description: 'The mutation that allows you to delete a existing Note by Id',
+  description: 'The mutation that allows you to delete a existing Note by jokeId',
   args: {
-    id: {
-      name: 'id',
+    jokeId: {
+      name: 'jokeId',
       type: new GraphQLNonNull(GraphQLInt),
     },
   },
-  resolve: async (value, { id }) => {
-    const foundNote = await Note.findById(id);
+  resolve: async (value, { jokeId }) => {
+    const foundNote = await Note.find({jokeId});
 
     if (!foundNote) {
-      throw new Error(`Note with id: ${id} not found!`);
+      throw new Error(`Note with jokeId: ${id} not found!`);
     }
 
     await Note.destroy({
       where: {
-        id,
+        jokeId,
       },
     });
 
@@ -90,6 +62,5 @@ const deleteNote = {
 
 module.exports = {
   createNote,
-  updateNote,
   deleteNote,
 };

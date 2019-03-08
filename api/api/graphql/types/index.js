@@ -3,5 +3,5 @@ const { UserType } = require('./UserType');
 
 module.exports = {
   NoteType,
-  UserType,
+  UserType
 };
