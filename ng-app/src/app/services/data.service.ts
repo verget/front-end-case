@@ -7,13 +7,13 @@ import { Observable } from "rxjs/internal/Observable";
 })
 export class DataService {
 
-  private jokesUrl = 'http://www.icndb.com/api/';
+  private jokesUrl = '';
 
   constructor(
     private http: HttpClient
   ) { }
 
   fetchRandomJokes(count: number): Observable<any> {
-    return this.http.get(`${this.jokesUrl}/random/${count}`);
+    return this.http.get(`${this.jokesUrl}/${count}`);
   }
 }
