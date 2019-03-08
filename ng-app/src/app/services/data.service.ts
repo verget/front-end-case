@@ -7,13 +7,13 @@ import { Observable } from "rxjs/internal/Observable";
 })
 export class DataService {
 
-  private jokesUrl = '';
+  private apiUrl = 'http://127.0.0.1:2017/rest';
 
   constructor(
     private http: HttpClient
   ) { }
 
   fetchRandomJokes(count: number): Observable<any> {
-    return this.http.get(`${this.jokesUrl}/${count}`);
+    return this.http.get(`${this.apiUrl}/jokes`);
   }
 }
