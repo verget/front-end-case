@@ -1,19 +1,17 @@
-
 <ng-container *ngIf="jokes && jokes.length">
   <ul>
     <li *ngFor="let joke of jokes">
       {{ joke.joke }}
 
-      <button (click)="makeFavorite(joke)" [disabled]="joke.favorite">Make favorite</button>
+      <button (click)="makeFavorite(joke)" [disabled]="joke.favorite" type="button">Like</button>
     </li>
   </ul>
 </ng-container>
 
-
 <p>Favorite List</p>
 
+<button type="button" (click)="startTimer()">Start timer</button>
 <ng-container *ngIf="favoriteJokes && favoriteJokes.length; then list; else empty"></ng-container>
-
 
 <ng-template #empty>
   <p>Empty</p>
@@ -24,7 +22,9 @@
   <ul>
     <li *ngFor="let joke of favoriteJokes; let i = index">
       {{ joke.joke }}
-      <button (click)="removeFavorite(joke, i)">Remove from favorite</button>
+      <button (click)="removeFavorite(joke, i)" type="button">
+        Dislike
+      </button>
     </li>
   </ul>
 </ng-template>

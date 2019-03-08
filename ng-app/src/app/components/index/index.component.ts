@@ -44,4 +44,8 @@ export class IndexComponent implements OnInit {
     this.favoriteJokes.splice(index, 1);
     this.jokesService.removeFavoriteJoke(joke.id).subscribe();
   }
+
+  startTimer() {
+    this.jokesService.fetchRandomJoke().subscribe();
+  }
 }
