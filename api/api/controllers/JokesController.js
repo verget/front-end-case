@@ -4,9 +4,9 @@ const jokesService = require('../services/jokes.service');
 const JokesController = () => {
 
   const fetchRandomJokes = async (req, res) => {
-    // console.log(req);
+    const { count } = req.query;
     try {
-      const jokes = await jokesService().getRandomJokes(10);
+      const jokes = await jokesService().getRandomJokes(count);
       if (!jokes) {
         return res.status(400).json({msg: 'Bad Request: Jokes not found'});
       }
