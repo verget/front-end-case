@@ -42,5 +42,6 @@ export class IndexComponent implements OnInit {
   removeFavorite(joke, index) {
     joke.favorite = false;
     this.favoriteJokes.splice(index, 1);
+    this.jokesService.removeFavoriteJoke(joke.id).subscribe();
   }
 }

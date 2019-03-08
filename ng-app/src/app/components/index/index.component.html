@@ -12,7 +12,8 @@
 
 <p>Favorite List</p>
 
-<ng-container *ngIf="favoriteJokes.length; then list; else empty"></ng-container>
+<ng-container *ngIf="favoriteJokes && favoriteJokes.length; then list; else empty"></ng-container>
+
 
 <ng-template #empty>
   <p>Empty</p>

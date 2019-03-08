@@ -23,11 +23,17 @@ export class JokesService {
       .pipe(map((response: {type: string, value: Joke[]}) => response.value));
   }
 
-  saveFavoriteJoke(id: number): Observable<any>{
+  saveFavoriteJoke(id: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/favorite`, { id });
   }
 
-  getFavorites(): Observable<Joke[]>{
-    return this.http.get(`${this.apiUrl}/favorites`);
+  removeFavoriteJoke(id: number): Observable<any> {
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.delete(`${this.apiUrl}/favorite`, { params });
+  }
+
+  getFavorites(): Observable<Joke[]> {
+    return this.http.get(`${this.apiUrl}/favorites`)
+      .pipe(map((response: {type: string, value: Joke[]}) => response.value));
   }
 }
