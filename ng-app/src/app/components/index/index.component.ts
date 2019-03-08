@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from "../../services/data.service";
+import { JokesService } from "../../services/jokes.service";
+import { Joke } from "../../models/Joke";
 
 @Component({
   selector: 'app-root',
@@ -8,14 +9,30 @@ import { DataService } from "../../services/data.service";
 })
 export class IndexComponent implements OnInit {
 
+  public jokes: Joke[] = [];
+  public favoriteJokes: Joke[] = [];
+
   constructor(
-    private dataService: DataService
+    private jokesService: JokesService
   ) { }
 
   ngOnInit() {
-    this.dataService.fetchRandomJokes(10).subscribe(response => {
+    this.jokesService.fetchRandomJokes(10).subscribe(response => {
       console.log(response);
+      this.jokes = response;
     })
   }
 
+  makeFavorite(joke: Joke) {
+    if (!joke.isFavorite && this.favoriteJokes.length < 10) {
+      joke.isFavorite = true;
+      this.favoriteJokes.push(joke);
+      this.jokesService.saveFavoriteJoke(joke.id).subscribe();
+    }
+  }
+
+  removeFavorite(joke, index) {
+    joke.isFavorite = false;
+    this.favoriteJokes.splice(index, 1);
+  }
 }

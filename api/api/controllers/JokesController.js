@@ -16,8 +16,24 @@ const JokesController = () => {
     }
   };
 
+  const saveFavorite = async (req, res) => {
+    const { id } = req.body;
+
+    console.log(id);
+    // try {
+    //   const jokes = await jokesService().getRandomJokes(count);
+    //   if (!jokes) {
+    //     return res.status(400).json({msg: 'Bad Request: Jokes not found'});
+    //   }
+    //   return res.status(200).json();
+    // } catch (err) {
+    //   return res.status(500).json({ msg: 'Internal server error' });
+    // }
+  };
+
   return {
-    fetchRandomJokes
+    fetchRandomJokes,
+    saveFavorite
   };
 };
 

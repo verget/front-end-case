@@ -1,4 +1,30 @@
-<p>
-  index works!
-</p>
+
+<ng-container *ngIf="jokes && jokes.length">
+  <ul>
+    <li *ngFor="let joke of jokes">
+      {{ joke.joke }}
+
+      <button (click)="makeFavorite(joke)" [disabled]="joke.isFavorite">Make favorite</button>
+    </li>
+  </ul>
+</ng-container>
+
+
+<p>Favorite List</p>
+
+<ng-container *ngIf="favoriteJokes.length; then list; else empty"></ng-container>
+
+<ng-template #empty>
+  <p>Empty</p>
+</ng-template>
+
+<ng-template #list>
+  <ul>
+    <li *ngFor="let joke of favoriteJokes; let i = index">
+      {{ joke.joke }}
+      <button (click)="removeFavorite(joke, i)">Remove from favorite</button>
+    </li>
+  </ul>
+</ng-template>
+
 <router-outlet></router-outlet>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { IndexComponent } from './components/index/index.component';
-import { DataService } from "./services/data.service";
+import { JokesService } from "./services/jokes.service";
 import { CommonModule } from "@angular/common";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -18,7 +18,7 @@ import { HttpClientModule } from "@angular/common/http";
     AppRoutingModule
   ],
   providers: [
-    DataService
+    JokesService
   ],
   bootstrap: [IndexComponent]
 })

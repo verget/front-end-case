@@ -3,11 +3,13 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 
 import { environment } from '../../environments/environment';
+import { Joke } from "../models/Joke";
+import { map } from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService {
+export class JokesService {
 
   private apiUrl: string = environment.apiUrl;
 
@@ -15,8 +17,13 @@ export class DataService {
     private http: HttpClient
   ) { }
 
-  fetchRandomJokes(count: number): Observable<any> {
+  fetchRandomJokes(count: number): Observable<Joke[]> {
     const params = new HttpParams().set('count', count.toString());
-    return this.http.get(`${this.apiUrl}/jokes`, { params });
+    return this.http.get(`${this.apiUrl}/jokes`, { params })
+      .pipe(map((response: {type: string, value: Joke[]}) => response.value));
+  }
+
+  saveFavoriteJoke(id: number): Observable<any>{
+    return this.http.post(`${this.apiUrl}/jokes/favorite`, { id });
   }
 }
