@@ -1,4 +1,4 @@
-<p>{{ joke.joke }}</p>
+<p>{{ joke.joke | unQuot}}</p>
 
 <div class="actions">
   <ng-container *ngIf="joke.favorite; then remove; else add"></ng-container>

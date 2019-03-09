@@ -22,7 +22,7 @@ export class JokeListComponent implements OnInit {
     this.save.emit(joke);
   }
 
-  removeFavorite(jokeObject: {joke: Joke, index: number}) {
-    this.remove.emit(jokeObject);
+  removeFavorite(joke: Joke) {
+    this.remove.emit(joke);
   }
 }

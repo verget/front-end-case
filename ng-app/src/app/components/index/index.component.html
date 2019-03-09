@@ -4,8 +4,8 @@
   <app-joke-list *ngIf="jokes && jokes.length"
                  [jokes]="jokes"
                  (save)="makeFavorite($event)"
-                 (remove)="removeFavorite($event)"
-  ></app-joke-list>
+                 (remove)="removeFavorite($event)">
+  </app-joke-list>
 
   <h1>Favorites</h1>
 
@@ -15,29 +15,13 @@
   </ng-template>
 
   <ng-template #list>
+    <p *ngIf="showAlert">{{showAlert}}</p>
     <app-joke-list [jokes]="favoriteJokes" (remove)="removeFavorite($event)"></app-joke-list>
   </ng-template>
 
 
-  <button type="button" (click)="startTimer()" *ngIf="!interval$">Start timer</button>
-  <button type="button" (click)="stopTimer()" *ngIf="interval$">Stop timer</button>
-  <!--<ng-container *ngIf="favoriteJokes && favoriteJokes.length; then list; else empty"></ng-container>-->
-
-  <!--<ng-template #empty>-->
-  <!--<p>Empty</p>-->
-  <!--</ng-template>-->
-
-  <!--<ng-template #list>-->
-  <!--<p *ngIf="showAlert">{{showAlert}}</p>-->
-  <!--<ul>-->
-  <!--<li *ngFor="let joke of favoriteJokes; let i = index">-->
-  <!--{{ joke.joke }}-->
-  <!--<button (click)="removeFavorite(joke, i)" type="button">-->
-  <!--Dislike-->
-  <!--</button>-->
-  <!--</li>-->
-  <!--</ul>-->
-  <!--</ng-template>-->
+  <button type="button" (click)="startTimer()" *ngIf="!interval$ || interval$.closed">Start timer</button>
+  <button type="button" (click)="stopTimer()" *ngIf="interval$ && !interval$.closed">Stop timer</button>
 
   <router-outlet></router-outlet>
 </div>

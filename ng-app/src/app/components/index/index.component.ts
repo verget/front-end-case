@@ -40,6 +40,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.showAlert = '';
       joke.favorite = true;
       this.favoriteJokes.push(joke);
+      this.favoriteJokes = [...this.favoriteJokes];
       this.jokesService.saveFavoriteJoke(joke.id).subscribe();
     } else {
       this.showAlert = "You can't have more then 10 favorites";
@@ -47,11 +48,12 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeFavorite(jokeObject: { joke: Joke, index: number }) {
-    const { joke, index} = jokeObject;
-    console.log(joke);
+  removeFavorite(joke: Joke) {
     joke.favorite = false;
-    this.favoriteJokes.splice(index, 1);
+    this.showAlert = null;
+    this.favoriteJokes = this.favoriteJokes.filter(elem => {
+      return elem.id !== joke.id;
+    });
     this.jokesService.removeFavoriteJoke(joke.id).subscribe();
   }
 
@@ -60,7 +62,6 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.jokesService.fetchRandomJokes(1).subscribe((response: Joke[]) => {
         if (this.favoriteJokes.length < 10) {
           this.makeFavorite(response[0]);
-          //this.favoriteJokes.push(response[0])
         } else {
           this.stopTimer();
         }
