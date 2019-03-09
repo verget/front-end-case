@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ValidatorService } from '../../services/validator.service';
 
 @Component({
   selector: 'app-login',
@@ -9,12 +10,20 @@ import { FormGroup, FormControl } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   public loginForm;
-  constructor() { }
+  constructor(
+    private validatorService: ValidatorService
+  ) { }
 
   ngOnInit() {
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
+      username: new FormControl('', Validators.compose([Validators.required, this.validatorService.noWhitespaceValidator])),
+      password: new FormControl('', Validators.compose([
+        Validators.required, 
+        Validators.max(32), 
+        this.validatorService.noForbiddenLetters,
+        this.validatorService.noDoubleLetters,
+        this.validatorService.shouldBeStraightLetters,
+      ])),
     });
   }
 
