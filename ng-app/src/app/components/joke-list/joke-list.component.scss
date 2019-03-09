@@ -1,0 +1,33 @@
+.list-container {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  box-shadow: 0 0 12px rgba(0,0,0,.2);
+  margin-bottom: 20px;
+
+  .tile {
+    flex: 0 1 20%;
+    max-width: 20%;
+    position: relative;
+    background-color: #fff;
+    border-right: 1px solid rgba(2,56,89,.1);
+    border-bottom: 1px solid rgba(2,56,89,.1);
+    padding: 40px 13.33px 70px 13.33px;
+    text-align: center;
+
+    @media (max-width: 1080px) {
+      flex: 0 1 25%;
+      max-width: 25%;
+    }
+
+    @media (max-width: 720px) {
+      flex: 0 1 50%;
+      max-width: 50%;
+    }
+
+    &.saved {
+      background-color: #f3f6f7;;
+    }
+  }
+}
+

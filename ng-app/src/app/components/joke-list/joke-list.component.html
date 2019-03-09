@@ -1,0 +1,11 @@
+<div class="list-container">
+  <app-joke class="tile"
+            [class.saved]="joke.favorite"
+            *ngFor="let joke of jokes;
+            let i = index;"
+            [joke]="joke"
+            [index]="i"
+            (save)="makeFavorite($event)"
+            (remove)="removeFavorite($event)">
+  </app-joke>
+</div>

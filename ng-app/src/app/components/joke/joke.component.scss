@@ -1,0 +1,29 @@
+.actions {
+  position: absolute;
+  bottom: 10px;
+  width: calc(100% - 26.6px);
+
+  .icon-link {
+    position: relative;
+    .polygon {
+      width: 40px;
+      height: 40px;
+    }
+    .inner-icon {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+
+      &.like {
+        left: 10px;
+        bottom: 15px;
+      }
+      &.dislike {
+        left: 9px;
+        bottom: 11px;
+      }
+    }
+
+
+  }
+}

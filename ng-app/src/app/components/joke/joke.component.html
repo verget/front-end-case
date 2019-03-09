@@ -1,0 +1,18 @@
+<p>{{ joke.joke }}</p>
+
+<div class="actions">
+  <ng-container *ngIf="joke.favorite; then remove; else add"></ng-container>
+  <ng-template #add>
+    <a class="icon-link" (click)="makeFavorite()">
+      <img src="../../../assets/polygon.svg" alt="polygon" class="polygon">
+      <img src="../../../assets/like.svg" alt="thumb-up" class="inner-icon like">
+    </a>
+  </ng-template>
+
+  <ng-template #remove>
+    <a class="icon-link" (click)="removeFavorite()">
+      <img src="../../../assets/polygon.svg" alt="polygon" class="polygon">
+      <img src="../../../assets/dislike.svg" alt="thumb-down" class="inner-icon dislike">
+    </a>
+  </ng-template>
+</div>

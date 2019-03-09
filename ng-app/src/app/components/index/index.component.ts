@@ -47,7 +47,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
-  removeFavorite(joke, index) {
+  removeFavorite(jokeObject: { joke: Joke, index: number }) {
+    const { joke, index} = jokeObject;
+    console.log(joke);
     joke.favorite = false;
     this.favoriteJokes.splice(index, 1);
     this.jokesService.removeFavoriteJoke(joke.id).subscribe();
