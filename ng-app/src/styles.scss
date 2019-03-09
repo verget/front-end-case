@@ -36,3 +36,14 @@ button {
 h1 {
   margin-left: 5%;
 }
+
+.container {
+  margin: 0 20px;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}

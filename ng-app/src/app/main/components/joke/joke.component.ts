@@ -1,11 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { Joke } from "../../models/Joke";
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Joke } from "../../../models/Joke";
 
 @Component({
   selector: 'app-joke',
   templateUrl: './joke.component.html',
-  styleUrls: ['./joke.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./joke.component.scss']
 })
 export class JokeComponent {
 

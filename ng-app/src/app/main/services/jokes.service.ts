@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs/internal/Observable";
 
-import { environment } from '../../environments/environment';
-import { Joke } from "../models/Joke";
+import { environment } from '../../../environments/environment';
+import { Joke } from "../../models/Joke";
 import { map } from "rxjs/operators";
 
 @Injectable({

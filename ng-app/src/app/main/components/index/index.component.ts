@@ -1,11 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { JokesService } from "../../services/jokes.service";
-import { Joke } from "../../models/Joke";
+import { Joke } from "../../../models/Joke";
 import { Subscription } from "rxjs/internal/Subscription";
 import { interval } from "rxjs";
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-index',
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })

@@ -1,16 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { JokeComponent } from './joke.component';
-import { UnQuotPipe } from "../../pipes/un-quot.pipe";
-import { fakeJoke } from "../../mocks/fakeJoke";
+import { JokeListComponent } from './joke-list.component';
+import { JokeComponent } from "../joke/joke.component";
+import { UnQuotPipe } from "../../../pipes/un-quot.pipe";
+import { fakeJoke } from 'src/app/mocks/fakeJoke';
 
-describe('JokeComponent', () => {
-  let component: JokeComponent;
-  let fixture: ComponentFixture<JokeComponent>;
+describe('JokeListComponent', () => {
+  let component: JokeListComponent;
+  let fixture: ComponentFixture<JokeListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
+        JokeListComponent,
         JokeComponent,
         UnQuotPipe
       ]
@@ -19,29 +21,29 @@ describe('JokeComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JokeComponent);
+    fixture = TestBed.createComponent(JokeListComponent);
     component = fixture.componentInstance;
-    component.joke = fakeJoke;
     fixture.detectChanges();
+    component.jokes = [fakeJoke];
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have joke input value', () => {
-    expect(component.joke).toBeDefined();
+  it('should have jokes input value', () => {
+    expect(component.jokes).toBeDefined();
   });
 
   it('should emit output event save on joke selection', () => {
     spyOn(component.save, 'emit');
-    component.makeFavorite();
+    component.makeFavorite(fakeJoke);
     expect(component.save.emit).toHaveBeenCalled();
   });
 
   it('should emit output event remove on joke selection', () => {
     spyOn(component.remove, 'emit');
-    component.removeFavorite();
+    component.removeFavorite(fakeJoke);
     expect(component.remove.emit).toHaveBeenCalled();
   });
 });
