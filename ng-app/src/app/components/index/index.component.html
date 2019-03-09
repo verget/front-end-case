@@ -10,7 +10,8 @@
 
 <p>Favorite List</p>
 
-<button type="button" (click)="startTimer()">Start timer</button>
+<button type="button" (click)="startTimer()" *ngIf="!interval$">Start timer</button>
+<button type="button" (click)="stopTimer()" *ngIf="interval$">Stop timer</button>
 <ng-container *ngIf="favoriteJokes && favoriteJokes.length; then list; else empty"></ng-container>
 
 <ng-template #empty>

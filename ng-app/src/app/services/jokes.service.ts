@@ -23,11 +23,6 @@ export class JokesService {
       .pipe(map((response: {type: string, value: Joke[]}) => response.value));
   }
 
-  fetchRandomJoke(): Observable<Joke> {
-    return this.http.get(`${this.apiUrl}/joke`)
-      .pipe(map((response: {type: string, value: Joke}) => response.value));
-  }
-
   saveFavoriteJoke(id: number): Observable<any> {
     return this.http.post(`${this.apiUrl}/favorite`, { id });
   }

@@ -20,6 +20,7 @@ const JokesController = () => {
     const { id } = req.body;
     try {
       const joke = await jokesService().getSpecificJoke(id);
+      console.log(joke);
       if (!joke || joke.type !== 'success') {
         return res.status(400).json({msg: 'Bad Request: Jokes not found'});
       }
