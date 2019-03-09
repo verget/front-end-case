@@ -14,9 +14,7 @@ export class JokeListComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    console.log(this.jokes);
-  }
+  ngOnInit() {}
 
   makeFavorite(joke: Joke) {
     this.save.emit(joke);

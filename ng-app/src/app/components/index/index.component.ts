@@ -26,7 +26,6 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.jokes = response;
     });
     this.jokesService.getFavorites().subscribe(response => {
-      console.log(response);
       this.favoriteJokes = response;
     })
   }
@@ -34,7 +33,12 @@ export class IndexComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.pageSubscriptions.unsubscribe();
   }
-
+  
+  /**
+   * Add joke to favorites list if it isn't full, or show overflow alert and stop random joke timer, 
+   * if it was started
+   * @param joke 
+   */
   makeFavorite(joke: Joke) {
     if (this.favoriteJokes.length < 10) {
       this.showAlert = '';
@@ -48,6 +52,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
+  /**
+   * Remove joke from favorites list, clear overflow notification
+   * @param joke: Joke 
+   */
   removeFavorite(joke: Joke) {
     joke.favorite = false;
     this.showAlert = null;
@@ -57,6 +65,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.jokesService.removeFavoriteJoke(joke.id).subscribe();
   }
 
+  /**
+   * Function start interval fetching of new random joke, add it to favorites list if it isn't full
+   * or stop fetching
+   */
   startTimer() {
     this.interval$ = interval(3000).subscribe(tick => {
       this.jokesService.fetchRandomJokes(1).subscribe((response: Joke[]) => {
@@ -65,7 +77,6 @@ export class IndexComponent implements OnInit, OnDestroy {
         } else {
           this.stopTimer();
         }
-        console.log(response[0]);
       });
     });
     this.pageSubscriptions.add(this.interval$);

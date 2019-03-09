@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { Joke } from "../../models/Joke";
-import { Pipe, PipeTransform } from '@angular/core';
 
 @Component({
   selector: 'app-joke',
