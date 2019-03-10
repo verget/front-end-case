@@ -5,7 +5,7 @@ const jokesService = () => {
   const getRandomJokes = (count = 10) => {
     const options = {
       uri: `${jokesUrl}/random/${count}`,
-      json: true
+      json: true,
     };
     return request(options);
   };
@@ -13,14 +13,14 @@ const jokesService = () => {
   const getSpecificJoke = (id) => {
     const options = {
       uri: `${jokesUrl}/${id}`,
-      json: true
+      json: true,
     };
     return request(options);
   };
 
   return {
     getRandomJokes,
-    getSpecificJoke
+    getSpecificJoke,
   };
 };
 
