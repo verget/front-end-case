@@ -4,3 +4,11 @@
   line-height: 1.25;
   font-size: 22px;
 }
+.block {
+  position: relative;
+}
+.logout-btn, .timer-btn {
+  position: absolute;
+  right: 0;
+  top: 5px;
+}

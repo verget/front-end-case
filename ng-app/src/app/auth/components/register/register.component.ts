@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorService } from '../../services/validator.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,6 +14,8 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
   constructor(
     private validatorService: ValidatorService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,6 +32,22 @@ export class RegisterComponent implements OnInit {
         confirm: new FormControl('', Validators.required)
       }, this.validatorService.matchValidator)
     });
+  }
+
+  onSubmit() {
+    this.authService.registration(
+      this.registerForm.value.username,
+      this.registerForm.value.passwords.password,
+      this.registerForm.value.passwords.confirm,
+    )
+    .subscribe(response => {
+      console.log(response);
+      this.router.navigate(['/main']);
+    }, error => console.error(error));
+  }
+
+  goToLogin() {
+    this.router.navigate(['auth']);
   }
 
 }

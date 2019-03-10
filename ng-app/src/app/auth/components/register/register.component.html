@@ -1,5 +1,6 @@
 <div class="container">
   <h1>Register</h1>
+  <button class="navigate-btn" (click)="goToLogin()">Log in</button>
 
   <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <input type="text" placeholder="Username" formControlName="username"/>

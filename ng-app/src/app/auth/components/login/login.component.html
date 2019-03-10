@@ -1,6 +1,8 @@
 <div class="container">
   <h1>Log in</h1>
+  <button class="navigate-btn" (click)="goToRegister()">Register</button>
 
+  <p *ngIf="showAlert">{{showAlert}}</p>
   <form class="login-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <input type="text" placeholder="Username" formControlName="username"/>
     <input type="password" placeholder="Password" formControlName="password"/>

@@ -3,6 +3,7 @@ import { JokesService } from "../../services/jokes.service";
 import { Joke } from "../../../models/Joke";
 import { Subscription } from "rxjs/internal/Subscription";
 import { interval } from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-index',
@@ -18,7 +19,8 @@ export class IndexComponent implements OnInit, OnDestroy {
   private pageSubscriptions = new Subscription();
 
   constructor(
-    private jokesService: JokesService
+    private jokesService: JokesService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -86,5 +88,10 @@ export class IndexComponent implements OnInit, OnDestroy {
     if (this.interval$) {
       this.interval$.unsubscribe();
     }
+  }
+
+  logout() {
+    localStorage.removeItem('authToken');
+    this.router.navigate(['auth']);
   }
 }

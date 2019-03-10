@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ValidatorService } from '../../services/validator.service';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +11,12 @@ import { ValidatorService } from '../../services/validator.service';
 })
 export class LoginComponent implements OnInit {
 
-  public loginForm;
+  public loginForm: FormGroup;
+  public showAlert = null;
   constructor(
-    private validatorService: ValidatorService
+    private validatorService: ValidatorService,
+    private authService: AuthService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -28,7 +33,20 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.loginForm.value);
+    this.showAlert = null;
+    this.authService.login(
+      this.loginForm.value.username,
+      this.loginForm.value.password
+    )
+    .subscribe(response => {
+      this.router.navigate(['/main']);
+    }, error => {
+      console.error(error);
+      this.showAlert = "Wrong username or password";
+    });
   }
 
+  goToRegister() {
+    this.router.navigate(['auth/register']);
+  }
 }
