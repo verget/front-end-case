@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>Register</h1>
+
+  <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Username" formControlName="username"/>
+    <div formGroupName="passwords">
+      <input type="password" placeholder="Password" formControlName="password"/>
+      <input type="password" placeholder="Confirm password" formControlName="confirm"/>
+    </div>
+    <button type="submit" [disabled]="!registerForm.valid">Submit</button>
+  </form>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,23 @@
+.register-form {
+    width: 83.33333%;
+    margin: auto;
+  
+    input {
+      background-color: #fff;
+      box-shadow: 0 0 12px transparent;
+      width: 100%;
+      font-weight: 300;
+      font-style: normal;
+      color: #023859;
+      line-height: 1.44;
+      font-size: 18px;
+      padding: 10px;
+      padding-left: 20px;
+      transition: box-shadow .2s cubic-bezier(.58,.18,.54,.85);
+      margin-bottom: 16px;
+  
+      &:focus {
+        box-shadow: 0 0 12px rgba(0,0,0,.2);
+      }
+    }
+  }
